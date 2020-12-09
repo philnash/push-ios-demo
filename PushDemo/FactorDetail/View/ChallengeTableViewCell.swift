@@ -25,10 +25,12 @@ class ChallengeTableViewCell: UITableViewCell {
   static let reuseIdentifier = String(describing: ChallengeTableViewCell.self)
   
   @IBOutlet private weak var messageLabel: UILabel!
-  @IBOutlet private weak var expirationDateLabel: UILabel!
+  @IBOutlet private weak var createdDateLabel: UILabel!
+  @IBOutlet private weak var statusLabel: UILabel!
   
   func configure(with challenge: Challenge) {
     messageLabel.text = challenge.challengeDetails.message
-    expirationDateLabel.text = challenge.expirationDate.verifyStringFormat()
+    statusLabel.text = challenge.status.rawValue
+    createdDateLabel.text = "Created at: " + challenge.createdAt.verifyStringFormat()
   }
 }
