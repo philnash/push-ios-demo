@@ -27,7 +27,6 @@ protocol CreateFactorView: class {
 class CreateFactorViewController: UIViewController {
 
   @IBOutlet private weak var identityTextField: UITextField!
-  @IBOutlet private weak var accessTokenURLTextField: UITextField!
   @IBOutlet private weak var createButton: UIButton!
   @IBOutlet private weak var closeButton: UIBarButtonItem!
   @IBOutlet private weak var loader: UIActivityIndicatorView!
@@ -40,14 +39,9 @@ class CreateFactorViewController: UIViewController {
     setupUI()
   }
   
-  override func viewDidAppear(_ animated: Bool) {
-    super.viewDidAppear(animated)
-    accessTokenURLTextField.text = presenter?.accessTokenURL()
-  }
-  
   @IBAction func createFactor() {
     let identity = identityTextField.text
-    let url = accessTokenURLTextField.text
+    let url = Bundle.main.object(forInfoDictionaryKey: "accessTokenUrl") as? String
     loader.startAnimating()
     presenter?.create(withIdentity: identity, accessTokenURL: url)
   }
@@ -84,7 +78,6 @@ private extension CreateFactorViewController {
     closeButton.target = self
     closeButton.action = #selector(dismissView)
     identityTextField.addBottomBorder()
-    accessTokenURLTextField.addBottomBorder()
     createButton.layer.cornerRadius = 8
   }
   

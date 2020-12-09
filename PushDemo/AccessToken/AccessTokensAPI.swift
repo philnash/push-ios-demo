@@ -27,7 +27,7 @@ enum NetworkError: LocalizedError {
   var errorDescription: String? {
     switch self {
       case .invalidURL:
-        return "Invalid URL"
+        return "Invalid Access Token URL"
       case .invalidBody:
         return "Invalid Body"
       case .invalidResponse:
