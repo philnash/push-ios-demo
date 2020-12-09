@@ -71,7 +71,7 @@ private extension FactorDetailPresenter {
     let payload = ChallengeListPayload(factorSid: factor.sid, pageSize: 20)
     twilioVerify.getAllChallenges(withPayload: payload, success: { [weak self] list in
       guard let strongSelf = self else { return }
-      strongSelf.challenges = list.challenges
+        strongSelf.challenges = list.challenges.sorted(){$0.createdAt > $1.createdAt}
     }) { [weak self] error in
       guard let strongSelf = self else { return }
       strongSelf.view?.showAlert(withMessage: error.errorMessage)
