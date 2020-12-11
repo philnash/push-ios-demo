@@ -70,10 +70,10 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     defer { completionHandler() }
     
     guard response.actionIdentifier == UNNotificationDefaultActionIdentifier,
-          let payload = response.notification.request.content.userInfo["data"] as? [String: Any],
-          let challengeSid = payload["challenge_sid"] as? String,
-          let factorSid = payload["factor_sid"] as? String,
-          let type = payload["type"] as? String, type == "verify_push_challenge" else {
+              let payload = response.notification.request.content.userInfo["data"] as? [String: Any],
+              let challengeSid = payload["challenge_sid"] as? String,
+              let factorSid = payload["factor_sid"] as? String,
+              let type = payload["type"] as? String, type == "verify_push_challenge" else {
       return
     }
     
